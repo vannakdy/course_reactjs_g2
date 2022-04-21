@@ -1,104 +1,125 @@
-
-import React , {useState} from 'react';
-
+import React , {useEffect,useState} from "react";
+import "./HomeScreen.css";
+import axios from 'axios';
+import ProductCart from "../../component/cart/ProductCart";
+const image_hp = require("../../assets/001hp.jpg")
+const image_mac = require("../../assets/002mac.jpg")
+const image_lenevo = require("../../assets/003lenevo.jpg")
 const HomeScreen = () => {
-    // code , name ,qty price 
-    // design text input
-    // add data
-    // clear
-    // list data
-    // delete
-    // edit
-    const [code,setCode] = useState("");
-    const [name,setName] = useState("");
-    const [price,setPrice] = useState(0);
-    const [qty,setQty] = useState(0);
-    const [indexHidden , setIndexHidden] = useState("");
-    const [data,setData] = useState([]);
 
-    const handleAdd = () => {
-        if(indexHidden === ""){
-            var objTmp = {
-                "code" : code,
-                "name" : name,
-                "price" : price,
-                "qty" : qty
-            }
-            // data.push(objTmp);
-            setData([...data,objTmp]);
-            handleClear();
-        }else{
-            data[indexHidden].code = code;
-            data[indexHidden].name = name;
-            data[indexHidden].price = price;
-            data[indexHidden].qty = qty;
-            setData([...data]);
-            setIndexHidden("");
-            handleClear();
+    const [listStudent,setListStudent] = useState([]);
+    const [totalRecord,setTotalRecord] = useState(0)
+
+    useEffect(()=>{
+        getStudentList();
+    },[]);
+
+
+    const getStudentList = () => {
+        axios({
+            method:"GET",
+            url:"https://nitc.cleverapps.io/api/student",
+            data:{}
+        }).then(res=>{
+            var dataRes = res.data;
+            setListStudent(dataRes.data);
+            setTotalRecord(dataRes.total_record)
+        })
+    }
+
+    const dataProduct = [
+        {
+            id : 1,
+            image_url : image_hp,
+            p_name : "Hp 2022",
+            p_full_price : "1600$",
+            p_discount : "30%",
+            p_price : "1300$",
+            category : "HP",
+            status:true
+        },
+        {
+            id : 2,
+            image_url : image_mac,
+            p_name : "Mac 2022",
+            p_full_price : "1600$",
+            p_discount : "30%",
+            p_price : "1300$",
+            category : "Mac OSX",
+            status:true
+        },
+        {
+            id : 3,
+            image_url : image_lenevo,
+            p_name : "Latop lenevo 2022",
+            p_full_price : "1600$",
+            p_discount : "30%",
+            p_price : "1300$",
+            category : "Lenevo",
+            status:false
+        },
+        {
+            id : 3,
+            image_url : image_lenevo,
+            p_name : "Latop lenevo 2022",
+            p_full_price : "1600$",
+            p_discount : "30%",
+            p_price : "1300$",
+            category : "Lenevo",
+            status:false
+        },
+        {
+            id : 3,
+            image_url : image_lenevo,
+            p_name : "Latop lenevo 2022",
+            p_full_price : "1600$",
+            p_discount : "30%",
+            p_price : "1300$",
+            category : "Lenevo",
+            status:false
         }
-    }
-    const handleClear = () => {
-        setCode("");
-        setName("");
-        setPrice(0);
-        setQty(0);
-    }
-    const handleDelete = (indexParam) => {
-        var newData = data.filter((item,index)=> index !== indexParam)
-        setData([...newData]);
-    }
-    const hadleEdit = (item,index) => {
-        setCode(item.code);
-        setName(item.name);
-        setPrice(item.price);
-        setQty(item.qty);
-        setIndexHidden(index);
-    }
+    ]
+
     return (
-        <div>
-            {/* <h1>indexHidden: {indexHidden}</h1> */}
-            <input 
-                value={code}
-                placeholder='product code'
-                onChange={(event)=>setCode(event.target.value)}
-            /><br/>
-            <input 
-                value={name}
-                placeholder='product name'
-                onChange={(event)=>setName(event.target.value)}
-            /><br/>
-            <input 
-                value={price}
-                placeholder='product price'
-                onChange={(event)=>setPrice(event.target.value)}
-            /><br/>
-            <input 
-                value={qty}
-                placeholder='product quatity'
-                onChange={(event)=>setQty(event.target.value)}
-            /><br/>
-            <button onClick={handleAdd}>{indexHidden === "" ? "Add" : "Update"}</button>
-            <button onClick={handleClear}>Clear</button>
-            <h1>List Product</h1>
+        <div className="product_container1">
+            <h1>Student List {totalRecord}</h1>
             {
-                data.map((item,index)=>{
+                listStudent.map((item,index)=>{
                     return (
                         <div
+                            key={index} 
                             style={{
-                                padding:10,
-                                margin:10
+                                padding:10
                             }}
                         >
-                            <div>{index+1}. {item.code}-{item.name}</div>
-                            <div>{item.price}</div>
-                            <div>{item.qty}</div>
-                            <button onClick={()=>handleDelete(index)}>Delete</button>
-                            <button onClick={()=>hadleEdit(item,index)}>Edit</button>
+                            <div>{item.student_id}. {item.fname}-{item.lastname}</div>
+                            <div>{item.gender === 1 ? "Male" : "Female"}</div>
+                            <div>{item.tel}</div>
+                            <div>{item.email}</div>
+                            <div>{item.description}</div>
                         </div>
                     )
                 })
             }
+            {/* {
+                dataProduct.map((item,index)=>{
+                    return(
+                        <ProductCart
+                            image_url={item.image_url}
+                            p_name={item.p_name}
+                            p_full_price={item.p_full_price}
+                            p_discount={item.p_discount}
+                            p_price={item.p_price}
+                            category={item.category}
+                            status = {item.status}
+                            id = {item.id}
+                            handleAddCart={handleAddCart}
+                        />
+                    )
+                })
+            } */}
         </div>
     )
 }
+
 export default HomeScreen;

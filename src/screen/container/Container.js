@@ -15,9 +15,9 @@ const Container = (props) => {
             <div style={{height:600,padding:30}}>
                 {props.children}
             </div>
-            <div style={{padding:10,backgroundColor:'red'}}>
+            {/* <div style={{padding:10,backgroundColor:'red'}}>
                 <h1>footerfooterfooter</h1>
-            </div>
+            </div> */}
         </div>
     )
 }
