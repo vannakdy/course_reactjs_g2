@@ -9,6 +9,7 @@ const LoginScreen = () => {
     const [password,setPassword] = useState("");
     const [loading , setLoading ] = useState(false);
     const [message , setMessage ] = useState("");
+
     const handleLogin = () => {
         setLoading(true);
         setMessage("");
@@ -22,10 +23,11 @@ const LoginScreen = () => {
         }).then(response=>{
             setLoading(false);
             var data = response.data;
+            
             if(data.message){
                 setMessage(data.message);
             }else{
-                navigate("/")
+                navigate("/course")
             }
         })
     }

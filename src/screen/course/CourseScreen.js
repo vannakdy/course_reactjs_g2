@@ -1,52 +1,69 @@
-import React from "react";
-import ProductCart from "../../component/cart/ProductCart";
-const image_hp = require("../../assets/002mac.jpg")
-const image_mac = require("../../assets/002mac.jpg")
-const image_lenevo = require("../../assets/003lenevo.jpg")
-const HomeScreen = () => {
-    const dataProduct = [
-        {
-            id : 1,
-            image_url : image_hp,
-            p_name : "Hp 2022",
-            p_full_price : "1600$",
-            p_discount : "30%",
-            p_price : "1300$",
-            category : "HP",
-        },
-        {
-            id : 2,
-            image_url : image_mac,
-            p_name : "Mac 2022",
-            p_full_price : "1600$",
-            p_discount : "30%",
-            p_price : "1300$",
-            category : "Mac OSX",
-        },
-        {
-            id : 3,
-            image_url : image_lenevo,
-            p_name : "Latop lenevo 2022",
-            p_full_price : "1600$",
-            p_discount : "30%",
-            p_price : "1300$",
-            category : "Lenevo",
-        }
-    ]
+import React , {useState,useEffect} from  "react";
+import axios from "axios";
+import "./CourseScreen.css";
+const CourseScreen = () => {
+    const [loading,setLoading] = useState(true);
+    const [data,setData] = useState([]);
+
+    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWRtaW4iLCJpYXQiOjE2NTA5ODIwMTEsImV4cCI6MTY1MDk5NjQxMX0.9GPZYlaYHKlOZk4Pgn7fbFrDEBRnE9B5DELxwh1DvmY"
+
+    useEffect(()=>{
+        getListCourse();
+    },[])
+
+
+    const getListCourse = () => {
+        setLoading(true);
+        axios({
+            method:"GET",
+            url: "https://nitc.cleverapps.io/api/courses",
+            data:{},
+            headers:{
+                Authorization: `Bearer ${token}`
+            }
+        }).then(response=>{
+            var res = response.data;
+            setLoading(false);
+            setData(res.data);
+
+        })
+    }
+
+    // "course_id": 54,
+    // "name": "Flutter",
+    // "price": 150,
+    // "description": "Hybrid mobile app",
+    // "status": 1
+
     return (
         <div>
-            <h1>Course screen</h1>
+           
+            <div className="header">
+                <div>
+                    <div className="txt_main">List Course</div>
+                    <div className="txt_total">Total {data.length}</div>
+                </div>
+                <div>
+                    <button className="btn">Add</button>
+                </div>
+            </div>
+            {loading === true && <div>Loading ...</div>}
             {
-                dataProduct.map((item,index)=>{
-                    return(
-                        <ProductCart
-                            image_url={item.image_url}
-                            p_name={item.p_name}
-                            p_full_price={item.p_full_price}
-                            p_discount={item.p_discount}
-                            p_price={item.p_price}
-                            category={item.category}
-                        />
+                data.map((item,index)=>{
+                    return (
+                        <div
+                            key={index}
+                            className="list"
+                        >
+                            <div>
+                                <div className="txt_name">{item.name}</div>
+                                <div className="txt_desc">{item.description}</div>
+                            </div>
+                            <div>
+                                <div className="txt_price">{item.price}$</div>
+                                <div className="txt_active">{item.status == 1 ? "Actived" : "Disabled"}</div>
+                            </div>
+                        </div>
                     )
                 })
             }
@@ -54,4 +71,4 @@ const HomeScreen = () => {
     )
 }
 
-export default HomeScreen;
+export default CourseScreen;

@@ -1,0 +1,42 @@
+.list{
+    padding: 10px;
+    border-bottom: 0.5px gray solid;
+    display: flex;
+    justify-content: space-between;
+}
+.txt_main{
+    font-size: 22px;
+    font-weight: bold;
+    color: black;
+}
+.txt_total{
+    color: gray;
+}
+.header{
+    padding: 10px;
+    background-color: #e2e2e2;
+    display: flex;
+    justify-content: space-between;
+}
+.btn{
+    padding: 10px 30px;
+    background-color: green;
+    color: white;
+    font-weight: bold;
+}
+.txt_name{
+    font-size: 16px;
+    font-weight: bold;
+}
+.txt_price{
+    color: rgb(19, 92, 92);
+}
+.txt_desc{
+    color: gray;
+}
+.txt_active{
+    color: green;
+}
+.txt_inactive{
+    color: rgb(130, 143, 20);
+}
