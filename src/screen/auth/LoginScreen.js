@@ -11,6 +11,7 @@ const LoginScreen = () => {
     const [message , setMessage ] = useState("");
 
     const handleLogin = () => {
+
         setLoading(true);
         setMessage("");
         axios({
@@ -27,7 +28,13 @@ const LoginScreen = () => {
             if(data.message){
                 setMessage(data.message);
             }else{
-                navigate("/course")
+                localStorage.setItem("accessToken",data.accessToken)
+                localStorage.setItem("permiision",data.permiision)
+                localStorage.setItem("refreshToken",data.refreshToken)
+                localStorage.setItem("username",data.username)
+                localStorage.setItem("is_login","true");
+                window.location.href = "/"
+                // navigate("/")
             }
         })
     }

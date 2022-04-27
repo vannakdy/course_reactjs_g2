@@ -1,11 +1,16 @@
 import React , {useState,useEffect} from  "react";
 import axios from "axios";
 import "./CourseScreen.css";
+import {AiFillAndroid,AiOutlineUsergroupDelete} from 'react-icons/ai';
+import {MdDelete} from 'react-icons/md'
+
+
+
 const CourseScreen = () => {
     const [loading,setLoading] = useState(true);
     const [data,setData] = useState([]);
 
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWRtaW4iLCJpYXQiOjE2NTA5ODIwMTEsImV4cCI6MTY1MDk5NjQxMX0.9GPZYlaYHKlOZk4Pgn7fbFrDEBRnE9B5DELxwh1DvmY"
+    const token = localStorage.getItem("accessToken") //"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWRtaW4iLCJpYXQiOjE2NTA5ODIwMTEsImV4cCI6MTY1MDk5NjQxMX0.9GPZYlaYHKlOZk4Pgn7fbFrDEBRnE9B5DELxwh1DvmY"
 
     useEffect(()=>{
         getListCourse();
@@ -37,7 +42,18 @@ const CourseScreen = () => {
 
     return (
         <div>
-           
+            <AiFillAndroid 
+                fontSize={50}
+                style={{color:'red'}}
+                className="icon"
+            />
+            <MdDelete 
+                style={{color:'green',marginTop:30}}
+                fontSize={50}
+            />
+            <AiOutlineUsergroupDelete
+                fontSize={50}
+            />
             <div className="header">
                 <div>
                     <div className="txt_main">List Course</div>
