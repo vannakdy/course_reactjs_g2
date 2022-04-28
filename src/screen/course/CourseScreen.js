@@ -2,8 +2,8 @@ import React , {useState,useEffect} from  "react";
 import axios from "axios";
 import "./CourseScreen.css";
 import {AiFillAndroid,AiOutlineUsergroupDelete} from 'react-icons/ai';
-import {MdDelete} from 'react-icons/md'
-
+import {MdDelete} from 'react-icons/md';
+import { fetchData } from "../../Helpler";
 
 
 const CourseScreen = () => {
@@ -19,19 +19,43 @@ const CourseScreen = () => {
 
     const getListCourse = () => {
         setLoading(true);
-        axios({
-            method:"GET",
-            url: "https://nitc.cleverapps.io/api/courses",
-            data:{},
-            headers:{
-                Authorization: `Bearer ${token}`
-            }
-        }).then(response=>{
-            var res = response.data;
+        fetchData("api/courses",{},"GET").then(res=>{
             setLoading(false);
             setData(res.data);
-
         })
+        // axios({
+        //     method:"GET",
+        //     url: "https://nitc.cleverapps.io/api/courses",
+        //     data:{},
+        //     headers:{
+        //         Authorization: `Bearer ${token}`
+        //     }
+        // }).then(response=>{
+        //     var res = response.data;
+        //     setLoading(false);
+        //     setData(res.data);
+
+        // })
+    }
+
+    const handelDelete = (param_id) => {
+        setLoading(true);
+        fetchData("api/courses/"+param_id,{},"DELETE").then(res=>{
+            getListCourse();
+            setLoading(false);
+        })
+        // axios({
+        //     method : "DELETE",
+        //     url : "https://nitc.cleverapps.io/api/courses/"+param_id,
+        //     data : {},
+        //     headers:{
+        //         Authorization: `Bearer ${token}`
+        //     }
+        // }).then(response=>{
+        //     var res = response.data;
+        //     console.log(res)
+        //     getListCourse();
+        // })
     }
 
     // "course_id": 54,
@@ -42,18 +66,6 @@ const CourseScreen = () => {
 
     return (
         <div>
-            <AiFillAndroid 
-                fontSize={50}
-                style={{color:'red'}}
-                className="icon"
-            />
-            <MdDelete 
-                style={{color:'green',marginTop:30}}
-                fontSize={50}
-            />
-            <AiOutlineUsergroupDelete
-                fontSize={50}
-            />
             <div className="header">
                 <div>
                     <div className="txt_main">List Course</div>
@@ -78,6 +90,11 @@ const CourseScreen = () => {
                             <div>
                                 <div className="txt_price">{item.price}$</div>
                                 <div className="txt_active">{item.status == 1 ? "Actived" : "Disabled"}</div>
+                                <MdDelete 
+                                    onClick={()=>handelDelete(item.course_id)}
+                                    style={{color:'brown',marginTop:10}}
+                                    fontSize={24}
+                                />
                             </div>
                         </div>
                     )

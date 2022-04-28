@@ -20,8 +20,7 @@ const Container = (props) => {
                 </div>
                 :
                 <div className='main_menu'>
-                    <Link className='item_menu' to="/">Home</Link>
-                    <Link className='item_menu' to="/login">Login</Link>
+                    <Link className='item_menu' to="/">Brand Name</Link>
                 </div>
             }
             <div style={{height:600,padding:30}}>
