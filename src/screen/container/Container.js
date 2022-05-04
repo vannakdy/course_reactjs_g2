@@ -1,6 +1,6 @@
 import React  from "react";
 import {Link} from 'react-router-dom';
-
+import LoadingCenter from "../../component/loading/LoadingCenter";
 const Container = (props) => {
     const is_login = localStorage.getItem("is_login");
     const handleLogout = () => {
@@ -26,9 +26,6 @@ const Container = (props) => {
             <div style={{height:600,padding:30}}>
                 {props.children}
             </div>
-            {/* <div style={{padding:10,backgroundColor:'red'}}>
-                <h1>footerfooterfooter</h1>
-            </div> */}
         </div>
     )
 }

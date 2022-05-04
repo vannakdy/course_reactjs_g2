@@ -4,13 +4,12 @@ import "./CourseScreen.css";
 import {AiFillAndroid,AiOutlineUsergroupDelete} from 'react-icons/ai';
 import {MdDelete} from 'react-icons/md';
 import { fetchData } from "../../Helpler";
-
+import {Link,useNavigate} from 'react-router-dom';
 
 const CourseScreen = () => {
+    const navigate = useNavigate();
     const [loading,setLoading] = useState(true);
     const [data,setData] = useState([]);
-
-    const token = localStorage.getItem("accessToken") //"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiYWRtaW4iLCJpYXQiOjE2NTA5ODIwMTEsImV4cCI6MTY1MDk5NjQxMX0.9GPZYlaYHKlOZk4Pgn7fbFrDEBRnE9B5DELxwh1DvmY"
 
     useEffect(()=>{
         getListCourse();
@@ -23,19 +22,6 @@ const CourseScreen = () => {
             setLoading(false);
             setData(res.data);
         })
-        // axios({
-        //     method:"GET",
-        //     url: "https://nitc.cleverapps.io/api/courses",
-        //     data:{},
-        //     headers:{
-        //         Authorization: `Bearer ${token}`
-        //     }
-        // }).then(response=>{
-        //     var res = response.data;
-        //     setLoading(false);
-        //     setData(res.data);
-
-        // })
     }
 
     const handelDelete = (param_id) => {
@@ -44,18 +30,10 @@ const CourseScreen = () => {
             getListCourse();
             setLoading(false);
         })
-        // axios({
-        //     method : "DELETE",
-        //     url : "https://nitc.cleverapps.io/api/courses/"+param_id,
-        //     data : {},
-        //     headers:{
-        //         Authorization: `Bearer ${token}`
-        //     }
-        // }).then(response=>{
-        //     var res = response.data;
-        //     console.log(res)
-        //     getListCourse();
-        // })
+    }
+
+    const handleToCreateNew = () => {
+        navigate("/course/create")
     }
 
     // "course_id": 54,
@@ -63,6 +41,16 @@ const CourseScreen = () => {
     // "price": 150,
     // "description": "Hybrid mobile app",
     // "status": 1
+
+    // list : "api/courses" GET
+    // delete : "api/courses/12" DELETE
+    // create : "api/courses" POST
+    //         data : { 
+    //             name : "C++",
+    //             price : 100,
+    //             description : "",
+    //             status : ""
+    //         }
 
     return (
         <div>
@@ -72,9 +60,12 @@ const CourseScreen = () => {
                     <div className="txt_total">Total {data.length}</div>
                 </div>
                 <div>
-                    <button className="btn">Add</button>
+                    {/* <button className="btn"><Link to="/course/create">Add</Link></button> */}
+
+                    <button onClick={handleToCreateNew} className="btn">Add</button>
                 </div>
             </div>
+            
             {loading === true && <div>Loading ...</div>}
             {
                 data.map((item,index)=>{
