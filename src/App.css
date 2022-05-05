@@ -2,12 +2,15 @@
 .main_menu{
   padding: 15px;
   background-color: rgb(94, 137, 111);
+  display: flex;
+  justify-content: space-between;
 }
 .item_menu{
   padding:10px;
   margin:10px;
-  font-size: 18px;
+  font-size: 15px;
   color: white;
+  font-weight: 500;
   text-decoration: none;
 }
 .item_menu:hover{
@@ -52,4 +55,13 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.mySpin {
+  margin: 20px 0;
+  margin-bottom: 20px;
+  padding: 30px 50px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
 }
