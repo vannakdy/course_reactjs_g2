@@ -13,10 +13,11 @@
     color: gray;
 }
 .header{
-    padding: 20px 10px;
-    background-color: #e2e2e2;
+    padding: 10px;
+    /* background-color: #e2e2e2; */
     display: flex;
     justify-content: space-between;
+    align-items: flex-end;
 }
 .btn{
     padding: 10px 30px;

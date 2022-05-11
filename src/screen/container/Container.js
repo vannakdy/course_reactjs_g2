@@ -9,7 +9,6 @@ import {
     TeamOutlined,
     SwitcherOutlined,
     ImportOutlined
-    
 } from "@ant-design/icons";
 import {Dropdown,Menu,Space,Spin} from "antd";
 import LoadingCenter from "../../component/loading/LoadingCenter";
@@ -21,16 +20,6 @@ const Container = (props) => {
         window.location.href = "/login"
     }
     const menu = (
-        // <div style={{padding:10,backgroundColor:"gray"}}>
-        //     <div>Ddd</div>
-        //     <div>Ddd</div>
-        //     <div>Ddd</div>
-        //     <div>Ddd</div>
-        //     <div>Ddd</div>
-        //     <div>Ddd</div>
-        // </div>
-
-
         <Menu
             style={{width:150}}
             items={[
@@ -50,39 +39,6 @@ const Container = (props) => {
                 }
             ]}  
         />
-
-        // <Menu
-        //     items={[
-        //     {
-        //         label: (
-        //         <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-        //             1st menu item
-        //         </a>
-        //         ),
-        //     },
-        //     {
-        //         label: (
-        //         <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
-        //             2nd menu item (disabled)
-        //         </a>
-        //         ),
-        //         icon: <SmileOutlined />,
-        //         disabled: true,
-        //     },
-        //     {
-        //         label: (
-        //         <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
-        //             3rd menu item (disabled)
-        //         </a>
-        //         ),
-        //         disabled: true,
-        //     },
-        //     {
-        //         danger: true,
-        //         label: 'a danger item',
-        //     },
-        //     ]}
-        // />
     );
 
     return(
@@ -108,12 +64,12 @@ const Container = (props) => {
                         </Link>
                         <Link className='item_menu' to="/about">
                             <Space>
-                                < ImportOutlined/>ABOUT
+                                < ImportOutlined/>TEACHER
                             </Space>
                         </Link>
                         <Link className='item_menu' to="/student_payment">
                             <Space>
-                                < ImportOutlined/>STUDENT PAYMENT
+                                < ImportOutlined/>CLASSROOM
                             </Space>
                         </Link>
                         <Link className='item_menu' to="/student_payment">
@@ -146,7 +102,7 @@ const Container = (props) => {
                 </div>
             }
             <div style={{height:600,padding:30}}>
-                <Spin spinning={true}>
+                <Spin spinning={false}>
                     {props.children}
                 </Spin>
             </div>
