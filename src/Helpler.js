@@ -1,8 +1,8 @@
 import axios from "axios"
 
 export const config = {
-    // base_url : "https://nitc.cleverapps.io/",
-    base_url : "http://localhost:8080/",
+    base_url : "https://nitc.cleverapps.io/",
+    // base_url : "http://localhost:8080/",
     image_path : "",
     version : "",
     token : ""

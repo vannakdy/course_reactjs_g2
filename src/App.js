@@ -16,6 +16,7 @@ const App = () => {
       <Container>
         <Routes>
           <Route path='/' element={<HomeScreen/>} />
+          
           <Route path='/course' element={<CourseScreen/>} />
           <Route path='/course/create/' element={<CourseCreateScreen/>} />
           <Route path='/course/create/:id' element={<CourseCreateScreen/>} />
