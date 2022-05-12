@@ -6,6 +6,7 @@ import AboutScreen from "./screen/about/AboutScreen";
 import StudentScreen from "./screen/student/StudentScreen";
 import StudentPaymentScreen from "./screen/student_payment/StudentPaymentScreen";
 import LoginScreen from './screen/auth/LoginScreen';
+import TeacherScreen from './screen/teacher/TeacherScreen';
 import Route404 from './screen/404/Route404';
 import CourseCreateScreen from './screen/course/CourseCreateScreen';
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
@@ -20,6 +21,8 @@ const App = () => {
           <Route path='/course' element={<CourseScreen/>} />
           <Route path='/course/create/' element={<CourseCreateScreen/>} />
           <Route path='/course/create/:id' element={<CourseCreateScreen/>} />
+
+          <Route path='/teacher' element={<TeacherScreen/>} />
           
           <Route path='/about' element={<AboutScreen/>} />
           <Route path='/about' element={<AboutScreen/>} />

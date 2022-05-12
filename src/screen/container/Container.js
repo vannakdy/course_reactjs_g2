@@ -62,7 +62,7 @@ const Container = (props) => {
                                 <SwitcherOutlined />COURSES
                             </Space>
                         </Link>
-                        <Link className='item_menu' to="/about">
+                        <Link className='item_menu' to="/teacher">
                             <Space>
                                 < ImportOutlined/>TEACHER
                             </Space>
