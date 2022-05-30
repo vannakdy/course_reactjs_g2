@@ -1,15 +1,11 @@
 import React , {useState,useEffect} from  "react";
-import axios from "axios";
 import "./CourseScreen.css";
-import {AiFillAndroid,AiOutlineUsergroupDelete} from 'react-icons/ai';
-import {MdDelete} from 'react-icons/md';
 import { fetchData } from "../../Helpler";
-import {Link,useNavigate,useParams} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {Table,Space, Button,message} from "antd";
 import {DeleteFilled,EditFilled,PlusOutlined} from "@ant-design/icons"
 
 const CourseScreen = () => {
-    const params = useParams();
     
     const navigate = useNavigate();
     const [loading,setLoading] = useState(true);
@@ -19,20 +15,11 @@ const CourseScreen = () => {
         getListCourse();
     },[])
 
-
     const getListCourse = () => {
         setLoading(true);
         fetchData("api/courses",{},"GET").then(res=>{
             setLoading(false);
             setData(res.data);
-        })
-    }
-
-    const handelDelete = (param_id) => {
-        setLoading(true);
-        fetchData("api/courses/"+param_id,{},"DELETE").then(res=>{
-            getListCourse();
-            setLoading(false);
         })
     }
 

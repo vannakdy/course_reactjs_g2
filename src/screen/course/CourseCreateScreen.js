@@ -34,7 +34,8 @@ const CourseCreateScreen = () => {
   }
 
   const handleAdd = () => {
-    if(params.id === null){
+    debugger
+    if(params.id == undefined){
       var data = {
         name : name,
         price : price,
