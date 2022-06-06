@@ -2,7 +2,7 @@ import React , {useState,useEffect} from  "react";
 import "./CourseScreen.css";
 import { fetchData } from "../../Helpler";
 import {useNavigate} from 'react-router-dom';
-import {Table,Space, Button,message} from "antd";
+import {Table,Space, Button,message,Spin} from "antd";
 import {DeleteFilled,EditFilled,PlusOutlined} from "@ant-design/icons"
 
 const CourseScreen = () => {
@@ -44,24 +44,9 @@ const CourseScreen = () => {
        navigate("/course/create/"+record.course_id)
     }
 
-    // "course_id": 54,
-    // "name": "Flutter",
-    // "price": 150,
-    // "description": "Hybrid mobile app",
-    // "status": 1
-
-    // list : "api/courses" GET
-    // delete : "api/courses/12" DELETE
-    // create : "api/courses" POST
-    //         data : { 
-    //             name : "C++",
-    //             price : 100,
-    //             description : "",
-    //             status : ""
-    //         }
-
     return (
         <div>
+            <Spin spinning={loading} >
             <div className="header">
                 <div>
                     <div className="txt_main">List Course </div>
@@ -136,31 +121,7 @@ const CourseScreen = () => {
                 ]}
                 dataSource={data}
             />
-
-            {/* {
-                data.map((item,index)=>{
-                    return (
-                        <div
-                            key={index}
-                            className="list"
-                        >
-                            <div>
-                                <div className="txt_name">{item.name}</div>
-                                <div className="txt_desc">{item.description}</div>
-                            </div>
-                            <div>
-                                <div className="txt_price">{item.price}$</div>
-                                <div className="txt_active">{item.status == 1 ? "Actived" : "Disabled"}</div>
-                                <MdDelete 
-                                    onClick={()=>handelDelete(item.course_id)}
-                                    style={{color:'brown',marginTop:10}}
-                                    fontSize={24}
-                                />
-                            </div>
-                        </div>
-                    )
-                })
-            } */}
+            </Spin>
         </div>
     )
 }

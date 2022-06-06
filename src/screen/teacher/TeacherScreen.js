@@ -9,10 +9,12 @@ import {
   EditFilled,
   PlusCircleFilled,
 } from "@ant-design/icons";
+import {Link,useNavigate} from 'react-router-dom'
 
 const TeacherScreen = () => {
   const [data, setData] = useState([]);
   const [loading,setLoading] = useState(false)
+  const navigate = useNavigate();
 
   useEffect(() => {
     getTeacherList();
@@ -39,7 +41,7 @@ const TeacherScreen = () => {
   }
 
   const handleEdit = (item) => {
-
+    navigate("/teacher/create/"+item.teacher_id)
   }
 
   // "teacher_id": 9,
@@ -55,9 +57,8 @@ const TeacherScreen = () => {
       <Spin spinning={loading} >
       <div className="header_container">
         <h1>List Teacher</h1>
-        <Button size="small" type="primary">
-          {" "}
-          <PlusCircleFilled /> New Teacher
+        <Button  type="primary">
+          <Link to="/teacher/create"><PlusCircleFilled /> New Teacher</Link>
         </Button>
       </div>
       <Table

@@ -72,7 +72,7 @@ const Container = (props) => {
                                 < ImportOutlined/>CLASSROOM
                             </Space>
                         </Link>
-                        <Link className='item_menu' to="/student_payment">
+                        {/* <Link className='item_menu' to="/student_payment">
                             <Dropdown overlay={menu}>
                                 <a className="item_menu" onClick={e => e.preventDefault()}>
                                 <Space>
@@ -80,10 +80,9 @@ const Container = (props) => {
                                 </Space>
                                 </a>
                             </Dropdown>
-                        </Link>
+                        </Link> */}
                     </div>
                     <div>
-                       
                         <Dropdown overlay={menu}>
                             <a className="item_menu" onClick={e => e.preventDefault()}>
                             <Space>
